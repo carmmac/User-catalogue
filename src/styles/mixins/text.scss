@@ -1,0 +1,31 @@
+@import "../variables//index.scss";
+
+@mixin text-title {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-title;
+  line-height: $line-height-title;
+  color: $font-color-base;
+}
+
+@mixin text-base {
+  font-weight: $font-weight-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+@mixin text-card {
+  font-weight: $font-weight-base;
+  font-size: $font-size-content;
+  line-height: $line-height-content;
+}
+
+@mixin text-link {
+  @include text-base;
+  color: $font-color-link;
+  text-decoration: none;
+}
+
+@mixin form-label {
+  font-size: $font-size-form-label;
+  line-height: $line-height-form-label;
+}

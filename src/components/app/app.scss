@@ -1,0 +1,18 @@
+//Variables
+@import "../../styles/variables/index.scss";
+
+//Mixins
+@import "../../styles/mixins/index.scss";
+
+// Base
+@import "../../styles/base/normalize.css";
+@import "../../styles/base/fonts.scss";
+@import "../../styles/base/visually-hidden.scss";
+
+//Global components
+@import "../../styles/components/text.scss";
+@import "../../styles/components/wrapper.scss";
+@import "../../styles/components/page.scss";
+@import "../../styles/components/title.scss";
+@import "../../styles/components/list.scss";
+@import "../../styles/components/button.scss";

@@ -1,0 +1,49 @@
+@import "../../styles/mixins/index.scss";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 13px 0 10px;
+}
+
+.form {
+  @include form;
+  margin-bottom: 10px;
+}
+
+.form-field {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto 10px 12px;
+  padding: 0;
+
+  &:last-child {
+    margin-right: 6px;
+    margin-bottom: 19px;
+  }
+}
+
+.label {
+  margin-bottom: 3px;
+  @include form-label;
+}
+
+.input {
+  width: 211px;
+  padding: 5px 0 5px 10px;
+  @include form-input;
+}
+
+.comment-area {
+  min-width: 420px;
+  min-height: 55px;
+  resize: none;
+
+  @include form-input;
+}
+
+.submit-btn {
+  margin-left: auto;
+}

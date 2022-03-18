@@ -1,0 +1,17 @@
+@import "../../styles/variables/index.scss";
+@import "../../styles/mixins/index.scss";
+
+.sort {
+  width: 150px;
+  padding: 35px 0 0 20px;
+  background-color: $sort-bg-color;
+}
+
+.sort-item {
+  margin: 0 0 10px 0;
+}
+
+.sort-title {
+  display: block;
+  @include text-base;
+}

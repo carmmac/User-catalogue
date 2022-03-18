@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  min-width: 665px;
+  height: 100vh;
+
+  &--catalogue {
+    min-width: 420px;
+    margin: 19px auto 0 31px;
+  }
+
+  &--profile {
+    min-width: 438px;
+    margin: 19px auto 0 36px;
+  }
+}

@@ -1,0 +1,30 @@
+.btn {
+  display: block;
+  border: none;
+  border-radius: $btn-default-border-radius;
+  cursor: pointer;
+  @include text-base;
+
+  &--sort {
+    padding: 5px 15px;
+    background-color: $btn-sort-bg-color;
+    color: $btn-sort-color;
+  }
+
+  &--edit {
+    padding: 6px 11px 5px;
+    background-color: $btn-edit-bg-color;
+    color: $btn-edit-color;
+  }
+
+  &--submit {
+    padding: 5px 6px 5px 15px;
+    background-color: $btn-submit-bg-color--active;
+    color: $btn-submit-color--active;
+
+    &:disabled {
+      background-color: $btn-submit-bg-color--disabled;
+      color: $btn-submit-color--disabled;
+    }
+  }
+}

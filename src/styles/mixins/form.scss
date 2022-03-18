@@ -1,0 +1,13 @@
+@import "../variables/index.scss";
+
+@mixin form {
+  border: 1px solid $form-border-color;
+  border-radius: $form-border-radius;
+}
+
+@mixin form-input {
+  border: 1px solid $form-input-border-color;
+  border-radius: $form-input-border-radius;
+  font-size: $font-size-form-input;
+  line-height: $line-height-form-input;
+}

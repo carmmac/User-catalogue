@@ -1,0 +1,27 @@
+@import "../../../styles/variables/index.scss";
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: $user-list-item-bg-color;
+  border-radius: $user-list-item-border-radius;
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+}
+
+.row {
+  margin-bottom: 7px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.details {
+  align-self: flex-end;
+}

@@ -1,0 +1,9 @@
+.title {
+  margin: 0;
+  padding: 0;
+  @include text-title;
+
+  &--user-list {
+    padding-bottom: 15px;
+  }
+}

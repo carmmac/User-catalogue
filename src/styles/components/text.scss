@@ -1,0 +1,22 @@
+.text {
+  &--base {
+    @include text-base;
+  }
+
+  &--card {
+    @include text-card;
+
+    &-label {
+      margin-right: 7px;
+      color: $font-color-user-list-item-label;
+    }
+
+    &-value {
+      color: $font-color-base;
+    }
+  }
+
+  &--link {
+    @include text-link;
+  }
+}

@@ -1,0 +1,12 @@
+@import "../../styles/variables/index.scss";
+
+.user-list {
+  background-color: $user-list-bg-color;
+}
+
+.search-result {
+  display: block;
+  width: auto;
+  margin-left: auto;
+  text-align: right;
+}

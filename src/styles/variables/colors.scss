@@ -1,0 +1,43 @@
+// BACKGROUND
+$bg-color-main: #ffffff;
+$bg-color-second: #f3f3f3;
+$bg-color-usable: #4b51ef;
+
+// FONTS
+$font-color-base: #000000;
+$font-color-link: $bg-color-usable;
+$font-color-user-list-item-label: #a3a3a3;
+$font-color-disabled: rgba($font-color-base, 0.3);
+
+// COMPONENTS
+// Sort
+$sort-bg-color: #bdbdbd;
+
+// User-list
+$user-list-bg-color: $bg-color-main;
+
+// User-list-item
+$user-list-item-bg-color: $bg-color-second;
+
+// Form
+$form-border-color: $bg-color-second;
+
+//Form-input
+$form-input-border-color: #d8d8d8;
+
+// Buttons
+// btn--sort
+$btn-sort-bg-color: $bg-color-usable;
+$btn-sort-color: $bg-color-main;
+
+// btn--edit
+$btn-edit-bg-color: $bg-color-usable;
+$btn-edit-color: $bg-color-main;
+
+//btn--submit--active
+$btn-submit-bg-color--active: #52cf4f;
+$btn-submit-color--active: $bg-color-main;
+
+// btn-submit--disabled
+$btn-submit-bg-color--disabled: #afafaf;
+$btn-submit-color--disabled: $bg-color-main;
