@@ -5,6 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import Sort from "../sort/sort";
 import UserList from "../user-list/user-list";
 import UserProfile from "../user-profile/user-profile";
+import NotFoundPage from "../../error-pages/404";
 import "./app.scss";
 
 const App = () => {
@@ -15,12 +16,9 @@ const App = () => {
           <Sort />
           <BrowserRouter>
             <Switch>
-              <Route exact path={`/`}>
-                <UserList />
-              </Route>
-              <Route exact path={`/profile`}>
-                <UserProfile />
-              </Route>
+              <Route exact path={`/`} component={UserList} />
+              <Route exact path={`/user/:id`} component={UserProfile} />
+              <Route component={NotFoundPage} />
             </Switch>
           </BrowserRouter>
         </div>
