@@ -5,7 +5,7 @@ export const ApiActions = {
     api.getUsers().then((users) => next(Action.getUsers(users)));
   },
 
-  fetchUser: () => (next, _getState, api) => {
-    api.getUser().then((user) => next(Action.getUser(user)));
+  fetchUser: (id) => (next, _getState, api) => {
+    api.getUser(id).then((user) => next(Action.getUser(user)));
   },
 };

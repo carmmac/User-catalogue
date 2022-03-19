@@ -10,4 +10,8 @@
   border-radius: $form-input-border-radius;
   font-size: $font-size-form-input;
   line-height: $line-height-form-input;
+
+  &:read-only {
+    color: $font-color-disabled;
+  }
 }
