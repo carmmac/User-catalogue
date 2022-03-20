@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
+import {Action} from "../../store/action";
 import {ApiActions} from "../../store/api-actions";
 import {Selector} from "../../store/selectors";
 import styles from "./user-profile.module.scss";
@@ -9,7 +10,7 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const {id} = useParams();
 
-  const [readOnly, setReadOnly] = useState(true);
+  const [isReadOnly, setIsReadOnly] = useState(true);
 
   const {
     name,
@@ -29,9 +30,14 @@ const UserProfile = () => {
     }
   };
 
-  const onEditBtnClick = () => setReadOnly(false);
+  const onPageLeave = () => dispatch(Action.clearUserData());
+
+  const onEditBtnClick = () => setIsReadOnly(false);
 
   useEffect(() => onUserLoad(), [isUserLoaded]);
+  useEffect(() => {
+    return () => onPageLeave();
+  }, [id]);
 
   if (!isUserLoaded) {
     return <div>LOADING.....</div>;
@@ -53,28 +59,28 @@ const UserProfile = () => {
       <form className={styles.form}>
         <fieldset className={styles.formField}>
           <label className={styles.label}>Name</label>
-          <input className={styles.input} readOnly={readOnly} value={name} />
+          <input className={styles.input} readOnly={isReadOnly} value={name} />
         </fieldset>
 
         <fieldset className={styles.formField}>
           <label className={styles.label}>User name</label>
           <input
             className={styles.input}
-            readOnly={readOnly}
+            readOnly={isReadOnly}
             value={username}
           />
         </fieldset>
 
         <fieldset className={styles.formField}>
           <label className={styles.label}>E-mail</label>
-          <input className={styles.input} readOnly={readOnly} value={email} />
+          <input className={styles.input} readOnly={isReadOnly} value={email} />
         </fieldset>
 
         <fieldset className={styles.formField}>
           <label className={styles.label}>Street</label>
           <input
             className={styles.input}
-            readOnly={readOnly}
+            readOnly={isReadOnly}
             value={address.street}
           />
         </fieldset>
@@ -83,7 +89,7 @@ const UserProfile = () => {
           <label className={styles.label}>City</label>
           <input
             className={styles.input}
-            readOnly={readOnly}
+            readOnly={isReadOnly}
             value={address.city}
           />
         </fieldset>
@@ -92,19 +98,23 @@ const UserProfile = () => {
           <label className={styles.label}>Zip code</label>
           <input
             className={styles.input}
-            readOnly={readOnly}
+            readOnly={isReadOnly}
             value={address.zipcode}
           />
         </fieldset>
 
         <fieldset className={styles.formField}>
           <label className={styles.label}>Phone</label>
-          <input className={styles.input} readOnly={readOnly} value={phone} />
+          <input className={styles.input} readOnly={isReadOnly} value={phone} />
         </fieldset>
 
         <fieldset className={styles.formField}>
           <label className={styles.label}>Website</label>
-          <input className={styles.input} readOnly={readOnly} value={website} />
+          <input
+            className={styles.input}
+            readOnly={isReadOnly}
+            value={website}
+          />
         </fieldset>
 
         <fieldset className={styles.formField}>
@@ -115,7 +125,7 @@ const UserProfile = () => {
       <button
         type="submit"
         className={`btn  btn--submit  ${styles.submitBtn}`}
-        readOnly={readOnly}
+        disabled={isReadOnly}
       >
         Отправить
       </button>
