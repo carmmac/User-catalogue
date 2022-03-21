@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {Action} from "../../store/action";
 import {ApiActions} from "../../store/api-actions";
-import {Selector} from "../../store/selectors";
+import {getLoadIndicatorSelector, getUserSelector} from "../../store/selectors";
 import styles from "./user-profile.module.scss";
 
 const UserProfile = () => {
@@ -19,9 +19,9 @@ const UserProfile = () => {
     address,
     phone,
     website,
-  } = useSelector((state) => Selector.getUser(state));
+  } = useSelector((state) => getUserSelector(state));
   const isUserLoaded = useSelector((state) =>
-    Selector.getLoadIndicator.isUserLoaded(state)
+    getLoadIndicatorSelector.isUserLoaded(state)
   );
 
   const onUserLoad = () => {

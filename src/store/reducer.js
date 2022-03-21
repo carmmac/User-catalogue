@@ -1,5 +1,8 @@
 import {createReducer} from "@reduxjs/toolkit";
+import {SortType} from "../const";
 import {Action} from "./action";
+
+const DEFAULT_SORT_TYPE = SortType.NONE;
 
 const initialState = {
   users: [],
@@ -8,6 +11,7 @@ const initialState = {
     isUserListLoaded: false,
     isUserLoaded: false,
   },
+  sortType: DEFAULT_SORT_TYPE,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -24,6 +28,9 @@ const reducer = createReducer(initialState, (builder) => {
       state.user = initialState.user;
       state.loadIndicator.isUserLoaded =
         initialState.loadIndicator.isUserLoaded;
+    })
+    .addCase(Action.changeSortType, (state, action) => {
+      state.sortType = action.payload;
     });
 });
 
