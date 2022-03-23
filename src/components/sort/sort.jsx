@@ -21,7 +21,7 @@ const Sort = () => {
         type="button"
         value={SortType.CITY}
         className={`btn  btn--sort  ${styles.sortItem}`}
-        onClick={(evt) => onSortBtnClick(evt)}
+        onClick={onSortBtnClick}
       >
         по городу
       </button>
@@ -29,7 +29,7 @@ const Sort = () => {
         type="button"
         value={SortType.COMPANY}
         className={`btn  btn--sort  ${styles.sortItem}`}
-        onClick={(evt) => onSortBtnClick(evt)}
+        onClick={onSortBtnClick}
       >
         по компании
       </button>
