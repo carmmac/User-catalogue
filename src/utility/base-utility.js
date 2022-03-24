@@ -1,3 +1,5 @@
+import {FormFieldNames} from "../const";
+
 /* eslint-disable no-nested-ternary */
 const compareProps = ([propA, propB]) => (a, b) =>
   a[propA][propB] === b[propA][propB]
@@ -6,4 +8,8 @@ const compareProps = ([propA, propB]) => (a, b) =>
       ? 1
       : -1;
 
-export {compareProps};
+const checkIsFormFieldRequired = (field) => {
+  return FormFieldNames[field.toUpperCase()].isRequired;
+};
+
+export {compareProps, checkIsFormFieldRequired};

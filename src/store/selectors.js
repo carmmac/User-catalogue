@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
-import {PROP_NAMES, SortType} from "../const";
-import {compareProps} from "../utility";
+import {PropNames, SortType} from "../const";
+import {compareProps} from "../utility/base-utility";
 
 const getUsersSelector = createSelector(
     (state) => state.users,
@@ -33,9 +33,9 @@ const getSortedUsersSelector = createSelector(
     (users, sortType) => {
       switch (sortType) {
         case SortType.CITY:
-          return users.slice().sort(compareProps(PROP_NAMES[SortType.CITY]));
+          return users.slice().sort(compareProps(PropNames[SortType.CITY]));
         case SortType.COMPANY:
-          return users.slice().sort(compareProps(PROP_NAMES[SortType.COMPANY]));
+          return users.slice().sort(compareProps(PropNames[SortType.COMPANY]));
         default:
           return users;
       }
