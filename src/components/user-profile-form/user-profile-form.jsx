@@ -12,7 +12,9 @@ import {checkIsObjEmpty} from "../../utility/base-utility";
 const ProfileForm = ({isReadOnly}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => getUserSelector(state));
+
   const [inputError, setInputError] = useState({});
+  const [userData, setUserData] = useState(user);
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -26,6 +28,15 @@ const ProfileForm = ({isReadOnly}) => {
     if (checkIsObjEmpty(error)) {
       dispatch(ApiActions.postProfileUpdate(update));
     }
+  };
+
+  const onChange = (evt) => {
+    evt.preventDefault();
+    evt.persist();
+    setUserData((prevState) => ({
+      ...prevState,
+      [evt.target.name]: evt.target.value,
+    }));
   };
 
   return (
@@ -43,9 +54,9 @@ const ProfileForm = ({isReadOnly}) => {
           <FormField
             name={name}
             label={label}
-            defaulValue={user[name] ?? user.address[name]}
+            defaulValue={userData[name] ?? userData.address[name]}
             isReadOnly={isReadOnly}
-            onChange={() => {}}
+            onChange={onChange}
             key={`form-field_${i}`}
             errorMessage={inputError[name]}
           />

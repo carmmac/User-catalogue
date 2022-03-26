@@ -15,7 +15,11 @@ const FormField = ({
     <fieldset className={styles.formField}>
       <label className={styles.label}>{label}</label>
       {name === FormFieldNames.COMMENT.name ? (
-        <textarea className={styles.commentArea} name={name}></textarea>
+        <textarea
+          className={styles.commentArea}
+          name={name}
+          onChange={onChange}
+        ></textarea>
       ) : (
         <>
           <input
