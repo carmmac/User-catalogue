@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {ApiActions} from "../../store/api-actions";
 import {getLoadIndicatorSelector, getSortedUsersSelector, getSortTypeSelector} from "../../store/selectors";
-import UserListItem from "./user-list-item/user-list-item";
+import UserListItem from "../user-list-item/user-list-item";
 import styles from "./user-list.module.scss";
 
 const UserList = () => {

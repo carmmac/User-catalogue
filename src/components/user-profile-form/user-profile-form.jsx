@@ -4,18 +4,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {ApiActions} from "../../store/api-actions";
 import {getUserSelector} from "../../store/selectors";
 import styles from "./user-profile-form.module.scss";
+import {validate} from "../../utility/validate";
+import {FormFieldNames} from "../../const";
+import FormField from "../form-input/form-field";
 
 const ProfileForm = ({isReadOnly}) => {
   const dispatch = useDispatch();
-
-  const {
-    name,
-    username,
-    email,
-    address,
-    phone,
-    website,
-  } = useSelector((state) => getUserSelector(state));
+  const user = useSelector((state) => getUserSelector(state));
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -24,6 +19,7 @@ const ProfileForm = ({isReadOnly}) => {
     for (const entry of data.entries()) {
       update[entry[0]] = entry[1];
     }
+    console.log(validate(update)); // стили ошибок, onChange
     dispatch(ApiActions.postProfileUpdate(update));
   };
 
@@ -38,90 +34,16 @@ const ProfileForm = ({isReadOnly}) => {
         encType="application/x-www-form-urlencoded"
         onSubmit={onSubmit}
       >
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>Name</label>
-          <input
-            className={styles.input}
-            name="fullName"
-            readOnly={isReadOnly}
-            defaultValue={name}
+        {Object.values(FormFieldNames).map(({name, label}, i) => (
+          <FormField
+            name={name}
+            label={label}
+            defaulValue={user[name] ?? user.address[name]}
+            isReadOnly={isReadOnly}
+            onChange={() => {}}
+            key={`form-field_${i}`}
           />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>User name</label>
-          <input
-            className={styles.input}
-            name="username"
-            readOnly={isReadOnly}
-            defaultValue={username}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>E-mail</label>
-          <input
-            className={styles.input}
-            name="email"
-            readOnly={isReadOnly}
-            defaultValue={email}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>Street</label>
-          <input
-            className={styles.input}
-            name="street"
-            readOnly={isReadOnly}
-            defaultValue={address.street}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>City</label>
-          <input
-            className={styles.input}
-            name="city"
-            readOnly={isReadOnly}
-            defaultValue={address.city}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>Zip code</label>
-          <input
-            className={styles.input}
-            name="zipCode"
-            readOnly={isReadOnly}
-            defaultValue={address.zipcode}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>Phone</label>
-          <input
-            className={styles.input}
-            name="phone"
-            readOnly={isReadOnly}
-            defaultValue={phone}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>Website</label>
-          <input
-            className={styles.input}
-            name="website"
-            readOnly={isReadOnly}
-            defaultValue={website}
-          />
-        </fieldset>
-
-        <fieldset className={styles.formField}>
-          <label className={styles.label}>Comment</label>
-          <textarea className={styles.commentArea} name="comment"></textarea>
-        </fieldset>
+        ))}
       </form>
     </>
   );
