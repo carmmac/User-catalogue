@@ -15,3 +15,7 @@
     color: $font-color-disabled;
   }
 }
+
+@mixin form-input--error {
+  border-color: $form-input-border-color-error;
+}

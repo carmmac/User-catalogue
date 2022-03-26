@@ -18,16 +18,15 @@
   @include form-label;
 }
 
-.input {
-  width: 211px;
-  padding: 5px 0 5px 10px;
-  @include form-input;
-}
-
 .comment-area {
   min-width: 420px;
   min-height: 55px;
   resize: none;
 
   @include form-input;
+}
+
+.error-message {
+  display: block;
+  margin-top: 10px;
 }

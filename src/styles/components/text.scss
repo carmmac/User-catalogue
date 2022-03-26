@@ -19,4 +19,8 @@
   &--link {
     @include text-link;
   }
+
+  &--error {
+    @include text-form-error;
+  }
 }

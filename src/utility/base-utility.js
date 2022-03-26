@@ -12,4 +12,13 @@ const checkIsFormFieldRequired = (field) => {
   return FormFieldNames[field.toUpperCase()].isRequired;
 };
 
-export {compareProps, checkIsFormFieldRequired};
+const checkIsObjEmpty = (obj) => {
+  for (let prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+export {compareProps, checkIsFormFieldRequired, checkIsObjEmpty};

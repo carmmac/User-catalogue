@@ -1,0 +1,15 @@
+@import "../../styles//mixins/index.scss";
+
+.input {
+  width: 211px;
+  padding: 5px 0 5px 10px;
+  @include form-input;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &--error {
+    @include form-input--error;
+  }
+}

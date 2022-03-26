@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {ApiActions} from "../../store/api-actions";
@@ -7,10 +7,12 @@ import styles from "./user-profile-form.module.scss";
 import {validate} from "../../utility/validate";
 import {FormFieldNames} from "../../const";
 import FormField from "../form-input/form-field";
+import {checkIsObjEmpty} from "../../utility/base-utility";
 
 const ProfileForm = ({isReadOnly}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => getUserSelector(state));
+  const [inputError, setInputError] = useState({});
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -19,8 +21,11 @@ const ProfileForm = ({isReadOnly}) => {
     for (const entry of data.entries()) {
       update[entry[0]] = entry[1];
     }
-    console.log(validate(update)); // стили ошибок, onChange
-    dispatch(ApiActions.postProfileUpdate(update));
+    const error = validate(update);
+    setInputError(error);
+    if (checkIsObjEmpty(error)) {
+      dispatch(ApiActions.postProfileUpdate(update));
+    }
   };
 
   return (
@@ -42,6 +47,7 @@ const ProfileForm = ({isReadOnly}) => {
             isReadOnly={isReadOnly}
             onChange={() => {}}
             key={`form-field_${i}`}
+            errorMessage={inputError[name]}
           />
         ))}
       </form>

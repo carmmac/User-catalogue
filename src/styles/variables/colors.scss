@@ -2,6 +2,7 @@
 $bg-color-main: #ffffff;
 $bg-color-second: #f3f3f3;
 $bg-color-usable: #4b51ef;
+$color-error: #d91313;
 
 // FONTS
 $font-color-base: #000000;
@@ -24,6 +25,7 @@ $form-border-color: $bg-color-second;
 
 //Form-input
 $form-input-border-color: #d8d8d8;
+$form-input-border-color-error: $color-error;
 
 // Buttons
 // btn--sort

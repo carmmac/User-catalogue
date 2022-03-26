@@ -29,3 +29,9 @@
   font-size: $font-size-form-label;
   line-height: $line-height-form-label;
 }
+
+@mixin text-form-error {
+  font-size: $font-size-form-label;
+  line-height: $line-height-form-label;
+  color: $color-error;
+}
