@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {ApiActions} from "../../store/api-actions";
-import {getLoadIndicatorSelector, getSortedUsersSelector, getSortTypeSelector} from "../../store/selectors";
+import {
+  getLoadIndicatorSelector,
+  getSortedUsersSelector,
+  getSortTypeSelector,
+} from "../../store/selectors";
 import UserListItem from "../user-list-item/user-list-item";
 import styles from "./user-list.module.scss";
 
@@ -32,19 +36,17 @@ const UserList = () => {
   }
 
   return (
-    <>
-      <div className="wrapper--catalogue">
-        <h2 className={`title title--user-list`}>Список пользователей</h2>
-        <ul className={`list  ${styles.userList}`}>
-          {userList.map((user, i) => (
-            <UserListItem user={user} key={`user-${i}`} />
-          ))}
-        </ul>
-        <span className={`text--base  ${styles.searchResult}`}>
-          Найдено {users.length} пользователей
-        </span>
-      </div>
-    </>
+    <div className="wrapper--catalogue">
+      <h2 className={`title title--user-list`}>Список пользователей</h2>
+      <ul className={`list  ${styles.userList}`}>
+        {userList.map((user, i) => (
+          <UserListItem user={user} key={`user-${i}`} />
+        ))}
+      </ul>
+      <span className={`text--base  ${styles.searchResult}`}>
+        Найдено {users.length} пользователей
+      </span>
+    </div>
   );
 };
 

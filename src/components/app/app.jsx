@@ -10,20 +10,18 @@ import "./app.scss";
 
 const App = () => {
   return (
-    <>
-      <div className="page">
-        <div className="wrapper">
-          <Sort />
-          <BrowserRouter>
-            <Switch>
-              <Route exact path={`/`} component={UserList} />
-              <Route exact path={`/users/:id`} component={UserProfile} />
-              <Route component={NotFoundPage} />
-            </Switch>
-          </BrowserRouter>
-        </div>
+    <div className="page">
+      <div className="wrapper">
+        <Sort />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={`/`} component={UserList} />
+            <Route exact path={`/users/:id`} component={UserProfile} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </BrowserRouter>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -40,29 +40,27 @@ const ProfileForm = ({isReadOnly}) => {
   };
 
   return (
-    <>
-      <form
-        id="formUserProfile"
-        action="#"
-        method="POST"
-        className={styles.form}
-        autoComplete="off"
-        encType="application/x-www-form-urlencoded"
-        onSubmit={onSubmit}
-      >
-        {Object.values(FormFieldNames).map(({name, label}, i) => (
-          <FormField
-            name={name}
-            label={label}
-            defaulValue={userData[name] ?? userData.address[name]}
-            isReadOnly={isReadOnly}
-            onChange={onChange}
-            key={`form-field_${i}`}
-            errorMessage={inputError[name]}
-          />
-        ))}
-      </form>
-    </>
+    <form
+      id="formUserProfile"
+      action="#"
+      method="POST"
+      className={styles.form}
+      autoComplete="off"
+      encType="application/x-www-form-urlencoded"
+      onSubmit={onSubmit}
+    >
+      {Object.values(FormFieldNames).map(({name, label}, i) => (
+        <FormField
+          name={name}
+          label={label}
+          defaulValue={userData[name] ?? userData.address[name]}
+          isReadOnly={isReadOnly}
+          onChange={onChange}
+          key={`form-field_${i}`}
+          errorMessage={inputError[name]}
+        />
+      ))}
+    </form>
   );
 };
 
