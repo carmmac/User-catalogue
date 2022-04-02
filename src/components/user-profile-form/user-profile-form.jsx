@@ -1,16 +1,18 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 import {ApiActions} from "../../store/api-actions";
 import {getUserSelector} from "../../store/selectors";
-import styles from "./user-profile-form.module.scss";
 import {validate} from "../../utility/validate";
 import {FormFieldNames} from "../../const";
-import FormField from "../form-input/form-field";
 import {checkIsObjEmpty} from "../../utility/base-utility";
+import FormField from "../form-input/form-field";
+import styles from "./user-profile-form.module.scss";
 
 const ProfileForm = ({isReadOnly}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => getUserSelector(state));
 
   const [inputError, setInputError] = useState({});
@@ -27,6 +29,7 @@ const ProfileForm = ({isReadOnly}) => {
     setInputError(error);
     if (checkIsObjEmpty(error)) {
       dispatch(ApiActions.postProfileUpdate(update));
+      setTimeout(() => history.push(`/`), 500);
     }
   };
 
