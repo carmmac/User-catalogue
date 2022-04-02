@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import Sort from "../sort/sort";
 import UserList from "../user-list/user-list";
 import UserProfile from "../user-profile/user-profile";
-import NotFoundPage from "../../error-pages/404";
+import NotFoundPage from "../error-pages/404";
 import "./app.scss";
 
 const App = () => {
