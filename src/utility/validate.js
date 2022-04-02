@@ -10,11 +10,11 @@ export const validate = (values) => {
       error[name] = `${name} is required!`;
     }
 
-    if (name === FormFieldNames.EMAIL && !EMAIL_REGEX.test(values[name])) {
+    if (name === FormFieldNames.EMAIL.name && !EMAIL_REGEX.test(values[name])) {
       error[name] = `invalid ${name} format!`;
     }
 
-    if (name === FormFieldNames.ZIPCODE && !ZIPCODE_REGEX.test(values[name])) {
+    if (name === FormFieldNames.ZIPCODE.name && !ZIPCODE_REGEX.test(values[name])) {
       error[name] = `invalid ${name} format!`;
     }
   });
