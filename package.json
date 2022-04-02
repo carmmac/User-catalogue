@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "cross-env NODE_ENV=development webpack-dev-server --mode development",
-    "start": "cross-env NODE_ENV=production webpack-dev-server --mode production"
+    "build": "cross-env NODE_ENV=production webpack --mode production"
   },
   "author": "Petr Kirienko",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "eslint-config-htmlacademy": "2.1.0",
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
