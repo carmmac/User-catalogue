@@ -64,6 +64,10 @@ module.exports = {
     port: isDevMode ? 1337 : 8088,
     historyApiFallback: true,
   },
+  performance: {
+    maxAssetSize: 1024 * 100 * 5,
+    maxEntrypointSize: 1024 * 100 * 5,
+  },
   optimization: {
     minimize: isProdMode,
     minimizer: [
