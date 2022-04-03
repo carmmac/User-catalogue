@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isDevMode = process.env.NODE_ENV === `development`;
 const isProdMode = process.env.NODE_ENV === `production`;
@@ -9,57 +11,84 @@ const cssRegex = /\.s?css$/;
 const cssModuleRegex = /\.module\.s?css$/;
 const fontRegex = /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i;
 
+const terserPluginOptions = {
+  terserOptions: {
+    format: {
+      comments: false,
+    },
+  },
+  extractComments: false,
+};
+const miniCssExtractPluginOptions = {
+  filename: "[name].css",
+  chunkFilename: "[name].css",
+};
+const htmlWebpackPluginOptions = Object.assign(
+  {},
+  {
+    inject: true,
+    template: path.resolve(__dirname, "public/index.html"),
+    favicon: path.resolve(__dirname, "public/favicon.png"),
+  },
+  isProdMode
+    ? {
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true,
+        },
+      }
+    : undefined
+);
+
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: "./src/index.js",
   output: {
-    filename: "bundle.js",
-    path: path.resolve(process.cwd(), "build"),
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "build"),
     clean: true,
   },
   devServer: {
     static: {
-      directory: path.resolve(process.cwd(), "public"),
+      directory: path.resolve(__dirname, "public"),
     },
     open: true,
-    port: 1337,
+    port: isDevMode ? 1337 : 8088,
     historyApiFallback: true,
   },
-  plugins: [
-    ...(isDevMode
+  optimization: {
+    minimize: isProdMode,
+    minimizer: [
+      new TerserPlugin(terserPluginOptions),
+      new CssMinimizerPlugin(),
+    ],
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
+  },
+  plugins: [].concat(
+    isDevMode
       ? []
       : [
-          new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[name].css",
-          }),
-          new HtmlWebpackPlugin(
-            Object.assign(
-              {},
-              {
-                inject: true,
-                template: path.resolve(process.cwd(), "public/index.html"),
-                favicon: path.resolve(process.cwd(), "public/favicon.png"),
-              },
-              isProdMode
-                ? {
-                    minify: {
-                      removeComments: true,
-                      collapseWhitespace: true,
-                      removeRedundantAttributes: true,
-                      useShortDoctype: true,
-                      removeEmptyAttributes: true,
-                      removeStyleLinkTypeAttributes: true,
-                      keepClosingSlash: true,
-                      minifyJS: true,
-                      minifyCSS: true,
-                      minifyURLs: true,
-                    },
-                  }
-                : undefined
-            )
-          ),
-        ]),
-  ],
+          new MiniCssExtractPlugin(miniCssExtractPluginOptions),
+          new HtmlWebpackPlugin(htmlWebpackPluginOptions),
+        ]
+  ),
   module: {
     rules: [
       {
@@ -106,5 +135,5 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
   },
-  devtool: "source-map",
+  devtool: isDevMode ? "source-map" : false,
 };

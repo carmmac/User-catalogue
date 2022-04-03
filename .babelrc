@@ -1,5 +1,13 @@
 {
   "presets": [
     "@babel/preset-react"
+  ],
+  "plugins": [
+    ["transform-imports", {
+      "react-router": {
+        "transform": "react-router/${member}",
+        "preventFullImport": true
+      }
+    }]
   ]
 }
