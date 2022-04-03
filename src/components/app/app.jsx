@@ -1,7 +1,5 @@
 import React from "react";
-import {Route} from "react-router-dom";
-import {Switch} from "react-router-dom";
-import {BrowserRouter} from "react-router-dom";
+import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Sort from "../sort/sort";
 import UserList from "../user-list/user-list";
 import UserProfile from "../user-profile/user-profile";
